@@ -43,9 +43,6 @@ public class ChargeService {
         try {
             //发起交易请求
             charge = Charge.create(chargeMap);
-            // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
-            String chargeString = charge.toString();
-            System.out.println(chargeString);
         } catch (APIConnectionException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
@@ -59,6 +56,8 @@ public class ChargeService {
         } catch (InvalidRequestException e) {
             e.printStackTrace();
         }
+
+        // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
         return charge.toString();
     }
 
