@@ -669,11 +669,19 @@ footer .content2 .endorse {
 }
 .ch {
   width: 50%;
-  margin: auto;
+  margin:auto;
   height: auto;
   overflow: hidden;
   font-size: 16px;
 }
+
+.qrCode{
+  width:203px;
+  margin:auto;
+  overflow: hidden;
+}
+
+
 .ch .wx {
   width: 20%;
   min-width: 69px;
@@ -714,7 +722,7 @@ footer .content2 .endorse {
   min-width: 91px;
   padding: 14px;
   cursor: pointer;
-  margin-right: 20%;
+  /*margin-right: 20%;*/
   display: block;
   float: left;
   text-align: center;
@@ -738,11 +746,11 @@ footer .content2 .endorse {
   -o-transition: all 0.2s ease-out;
   background-color: #f7f7f7;
 }
-@media (max-width: 960px) {
-  .ch .up {
-    margin-right: 10%;
-  }
-}
+/*@media (max-width: 960px) {*/
+  /*.ch .up {*/
+    /*margin-right: 10%;*/
+  /*}*/
+/*}*/
 .ch .ap {
   width: 20%;
   min-width: 83px;

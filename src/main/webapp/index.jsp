@@ -30,19 +30,22 @@
                 <span class="up" onclick="wap_pay('upacp_wap');">银联 WAP</span>
                 <span class="up" onclick="wap_pay('alipay_wap');">支付宝 WAP</span>
                 <span class="up" onclick="wap_pay('alipay_pc_direct');">支付宝电脑网站支付</span>
-                <span class="up" onclick="wap_pay('bfb_wap');">百度钱包 WAP</span>
+                <span class="up" onclick="qr_pay('wx_pub_qr');">微信Native支付</span>
                 <span class="up" onclick="wap_pay('jdpay_wap');">京东支付 WAP</span>
                 <span class="up" onclick="wap_pay('yeepay_wap');">易宝支付 WAP</span>
                 <span class="up" onclick="wap_pay('wx_pub');">微信浏览器内公众号支付 WAP</span>
-
             </div>
+            <div class="qrCode"/>
         </div>
     </div>
 </section>
 <script src="js/pingpp.js" type="text/javascript"></script>
 <script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.qrcode.min.js" type="text/javascript"></script>
 
 <script>
+
+    //支付
     function wap_pay(channel) {
         var amount = $("#amount").val();
         var params = {
@@ -59,8 +62,8 @@
 
             success: function (data) {
                 pingpp.createPayment(data, function (result, err) {
-                // object 需是 Charge/Order/Recharge 的 JSON 字符串
-                // 可按需使用 alert 方法弹出 log
+                    // object 需是 Charge/Order/Recharge 的 JSON 字符串
+                    // 可按需使用 alert 方法弹出 log
                     console.log(result);
                     console.log(err.msg);
                     console.log(err.extra);
@@ -78,13 +81,49 @@
             },
 
             error: function (e) {
-                alert("error");
-
                 console.log(e)
             }
 
         });
     }
+
+    function qr_pay(channel) {
+        $(".qrCode").hide();
+        var amount = $("#amount").val();
+        var params = {
+            "channel": channel,
+            "amount": amount
+        };
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(params),
+            contentType: "application/json;charset=utf-8",
+            dataType: 'text',
+            traditional: true, //使json格式的字符串不会被转码
+            url: '/charge/getQrCode',
+
+            success: function (data) {
+                $(".ch").hide();
+                $(".qrCode").show();
+
+                /*注意：这个时候生成的二维码在微信中长按没任何反应，因为qrcode生成的是canvas标签而不是img标签*/
+                $(".qrCode").qrcode({
+                    render: "table", //table方式
+                    width: 200, //宽度
+                    height: 200, //高度
+                    correctLevel:0,
+                    text: data //任意内容
+                });
+                console.log(data)
+            },
+
+            error: function (e) {
+                console.log(e)
+            }
+
+        });
+    }
+
 </script>
 </body>
 </html>

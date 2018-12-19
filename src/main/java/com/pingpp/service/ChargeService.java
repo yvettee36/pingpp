@@ -19,7 +19,7 @@ public class ChargeService {
      * @param charge
      * @return
      */
-    public String createCharge(Charge charge) {
+    public Charge createCharge(Charge charge) {
         Pingpp.appId = Const.APP_ID;
         Pingpp.apiKey = Const.APP_KEY;
         Pingpp.privateKey = Const.APP_PRIVATE_KEY;
@@ -33,6 +33,10 @@ public class ChargeService {
         chargeMap.put("subject", "一加6T");
         chargeMap.put("body", "一加，不将就");
         chargeMap.put("description","备注");
+        Map<String, String> initialMetadata = new HashMap<String, String>();
+        initialMetadata.put("color", "red");
+        initialMetadata.put("phone_number", "13918651111");
+        chargeMap.put("metadata", initialMetadata);
         Map<String, String> app = new HashMap<String, String>();
         app.put("id", Const.APP_ID);
         chargeMap.put("app", app);
@@ -58,9 +62,8 @@ public class ChargeService {
         }
 
         // 传到客户端请先转成字符串 .toString(), 调该方法，会自动转成正确的 JSON 字符串
-        return charge.toString();
+        return charge;
     }
-
 
     private Map<String, Object> channelExtra(String channel) {
         Map<String, Object> extra = new HashMap<>();

@@ -91,7 +91,7 @@ public class ExtraUtil {
         // extra.put("goods_tag", "YOUR_GOODS_TAG");
 
         // 必须，商品 ID，1-32 位字符串。此 id 为二维码中包含的商品 ID，商户可自定义。
-        extra.put("product_id", "YOUR_PRODUCT_ID");
+        extra.put("product_id", CommonUtil.randomString(16));
 
         return extra;
     }

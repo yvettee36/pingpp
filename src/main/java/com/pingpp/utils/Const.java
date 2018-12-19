@@ -7,9 +7,9 @@ import org.springframework.core.io.Resource;
 import java.io.InputStream;
 
 public class Const {
-    public static String APP_ID = "*****";
-//    public static String APP_KEY = "******";
-    public static String APP_KEY = "*******";
+    public static String APP_ID = "app_CSqrT0jPKabD1qjz";
+//    public static String APP_KEY = "sk_test_SGqT049aXvb1vj9Gi9OCS44G";
+    public static String APP_KEY = "sk_live_q544K4rLePCSOWbTeHn1GujD";
     public static String APP_PRIVATE_KEY = null;
     public static String PINGPP_PUBLIC__KEY = null;
 
