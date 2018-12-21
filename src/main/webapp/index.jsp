@@ -27,13 +27,14 @@
             </label>
 
             <div class="ch">
-                <span class="up" onclick="wap_pay('upacp_wap');">银联 WAP</span>
-                <span class="up" onclick="wap_pay('alipay_wap');">支付宝 WAP</span>
+                <span class="up" onclick="wap_pay('alipay_wap');">支付宝手机网页支付</span>
+                <span class="up" onclick="qr_pay('alipay_qr');">支付宝扫码支付</span>
                 <span class="up" onclick="wap_pay('alipay_pc_direct');">支付宝电脑网站支付</span>
                 <span class="up" onclick="qr_pay('wx_pub_qr');">微信Native支付</span>
-                <span class="up" onclick="wap_pay('jdpay_wap');">京东支付 WAP</span>
-                <span class="up" onclick="wap_pay('yeepay_wap');">易宝支付 WAP</span>
-                <span class="up" onclick="wap_pay('wx_pub');">微信浏览器内公众号支付 WAP</span>
+                <span class="up" onclick="wap_pay('wx_wap');">微信H5支付</span>
+                <span class="up" onclick="wap_pay('upacp_pc');">银联网关支付</span>
+                <span class="up" onclick="qr_pay('upacp_qr');">银联二维码支付</span>
+                <span class="up" onclick="wap_pay('upacp_wap');">银联手机网站支付</span>
             </div>
             <div class="qrCode"/>
         </div>

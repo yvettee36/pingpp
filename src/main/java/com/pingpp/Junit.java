@@ -23,7 +23,7 @@ public class Junit {
 
     @Test
     public void testRefund(){
-        Refund refund = refundService.refund(1,"ch_1mvLOKjL4ubDD0COaDGm5WL0");
+        Refund refund = refundService.refund(1,"ch_mHabb5nLKq9Szj5eb1mvvPK8");
         System.out.println(refund.toString());
     }
 }
