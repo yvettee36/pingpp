@@ -32,7 +32,9 @@ public class ChargeService {
         chargeMap.put("currency", "cny");
         chargeMap.put("subject", "一加6T");
         chargeMap.put("body", "一加，不将就");
-        chargeMap.put("description","备注");
+        chargeMap.put("description", "备注");
+        Long time_expire = CommonUtil.getOrderExpireTime(2 * 60 * 1000L);
+        chargeMap.put("time_expire", time_expire);
         Map<String, String> initialMetadata = new HashMap<String, String>();
         initialMetadata.put("color", "red");
         initialMetadata.put("phone_number", "13918651111");
@@ -47,6 +49,7 @@ public class ChargeService {
         try {
             //发起交易请求
             charge = Charge.create(chargeMap);
+            System.out.println(charge.toString());
         } catch (APIConnectionException e) {
             e.printStackTrace();
         } catch (ChannelException e) {
