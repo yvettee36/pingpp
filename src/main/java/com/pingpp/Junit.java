@@ -3,10 +3,8 @@ package com.pingpp;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.model.Refund;
 import com.pingplusplus.model.Transfer;
-import com.pingpp.service.ChargeService;
-import com.pingpp.service.RefundService;
-import com.pingpp.service.RetrieveService;
-import com.pingpp.service.TransferService;
+import com.pingplusplus.model.User;
+import com.pingpp.service.*;
 import org.junit.jupiter.api.Test;
 
 public class Junit {
@@ -16,6 +14,7 @@ public class Junit {
     private RefundService refundService = new RefundService();
     private RetrieveService retrieveService = new RetrieveService();
     private TransferService transferService = new TransferService();
+    private UserService userService = new UserService();
 
     @Test
     public void testCharge() {
@@ -43,5 +42,23 @@ public class Junit {
     public void testTransfer() {
         Transfer transfer = transferService.createTransfer("alipay");
         System.out.println(transfer.toString());
+    }
+
+    @Test
+    public void testCreateUser() {
+        User user = new User();
+        user.setId("yvettee_user1");
+        user = userService.createUser(user);
+        System.out.println(user.toString());
+    }
+
+    /**
+     * 查询User对象
+     */
+    @Test
+    public void testGetUser() {
+        String id = "yvettee_user1";
+        User user = userService.getUser(id);
+        System.out.println(user.toString());
     }
 }
