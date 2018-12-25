@@ -23,7 +23,8 @@
         <div class="app">
             <span class="iphone"><img src="img/bgpic.jpg" width="100%" height="auto"></span>
             <label class="text_amount">
-                <input id="amount" type="text" placeholder="金 额"/>
+                <input id="balance" type="text" placeholder="账 户 余 额"/>
+                <input id="amount" type="text" placeholder="充 值 金 额"/>
             </label>
 
             <div class="ch">

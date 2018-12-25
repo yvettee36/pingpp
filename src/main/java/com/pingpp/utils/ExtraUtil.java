@@ -15,7 +15,7 @@ public class ExtraUtil {
         // extra.put("extern_token", "TOKEN");
 
         // 可选，是否发起实名校验，T 代表发起实名校验；F 代表不发起实名校验。
-        extra.put("rn_check", "T");
+//        extra.put("rn_check", "F");
 
         return extra;
     }

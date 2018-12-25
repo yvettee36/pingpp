@@ -68,7 +68,7 @@ public class ChargeService {
         return charge;
     }
 
-    private Map<String, Object> channelExtra(String channel) {
+    public static Map<String, Object> channelExtra(String channel) {
         Map<String, Object> extra = new HashMap<>();
 
         switch (channel) {
