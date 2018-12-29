@@ -13,11 +13,12 @@ public class Junit {
     private TransferService transferService = new TransferService();
     private UserService userService = new UserService();
     private SettleAccountService settleAccountService = new SettleAccountService();
+    private RechargeService rechargeService = new RechargeService();
 
     @Test
     public void testCharge() {
         Charge charge = new Charge();
-        charge.setChannel("alipay");
+        charge.setChannel("wx");
         charge.setClientIp("127.0.0.1");
         charge.setAmount(1);
         String chargeString = chargeService.createCharge(charge).toString();
@@ -25,7 +26,7 @@ public class Junit {
     }
 
     @Test
-    public void testGetCHarge() {
+    public void testGetCharge() {
         Charge charge = retrieveService.getCharge("ch_90a5qPPWLOS4nrjbH4bTijDS");
         System.out.println(charge.toString());
     }
@@ -79,5 +80,15 @@ public class Junit {
         String id = "320218122610335300002901";
         SettleAccount settleAccount = settleAccountService.getSettleAccount(id);
         System.out.println(settleAccount.toString());
+    }
+
+    /**
+     * 给yvettee_user1充值
+     */
+    @Test
+    public void testRecharge() {
+//        String user = "yvettee_user1";
+//        Recharge recharge = rechargeService.createRecharge(user);
+//        System.out.println(recharge.toString());
     }
 }

@@ -21,10 +21,22 @@
 <section class="block">
     <div class="content2">
         <div class="app">
-            <span class="iphone"><img src="img/bgpic.jpg" width="100%" height="auto"></span>
+            <span class="iphone">
+                <img src="img/bgpic.jpg" width="100%" height="auto">
+            </span>
+            <span class="balance">账 户 余 额：<%= session.getAttribute("amount")%></span>
             <label class="text_amount">
-                <input id="balance" type="text" placeholder="账 户 余 额"/>
-                <input id="amount" type="text" placeholder="充 值 金 额"/>
+                <input id="amount" type="text" placeholder="金 额"/>
+                <div class="select">
+                    <select id="payWay" class="payWay">
+                        <option value="" disabled selected>支付方式选择</option>
+                        <option value="alipay_pc_direct">支付宝电脑网站支付</option>
+                        <option value="wx_pub_qr">微信Native支付</option>
+                    </select>
+                </div>
+                <input class="btStyle" id="recharge" type="button" value="充值" onclick="recharge()"/>
+                <input class="btStyle" id="transfer" type="button" value="转账" onclick="transfer()"/>
+                <input class="btStyle" id="withdrawal" type="button" value="提现" onclick="withdrawal()"/>
             </label>
 
             <div class="ch">
@@ -36,14 +48,21 @@
                 <span class="up" onclick="wap_pay('upacp_pc');">银联网关支付</span>
                 <span class="up" onclick="qr_pay('upacp_qr');">银联二维码支付</span>
                 <span class="up" onclick="wap_pay('upacp_wap');">银联手机网站支付</span>
+                <span class="up" onclick="qr_pay('isv_qr');">线下扫码</span>
             </div>
-            <div class="qrCode"/>
+            <div class="qrCode"></div>
+
+            <div>
+
+            </div>
         </div>
     </div>
+
 </section>
 <script src="js/pingpp.js" type="text/javascript"></script>
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="js/layer.js" type="text/javascript"></script>
 
 <script>
 
@@ -51,8 +70,10 @@
     function wap_pay(channel) {
         var amount = $("#amount").val();
         var params = {
-            "channel": channel,
-            "amount": amount
+            "amount": amount,
+            "charge":{
+                "channel":channel
+            }
         };
         $.ajax({
             type: 'POST',
@@ -113,10 +134,57 @@
                     render: "table", //table方式
                     width: 200, //宽度
                     height: 200, //高度
-                    correctLevel:0,
+                    correctLevel: 0,
                     text: data //任意内容
                 });
                 console.log(data)
+            },
+
+            error: function (e) {
+                console.log(e)
+            }
+
+        });
+    }
+
+
+    function recharge() {
+        var amount = $("#amount").val();
+        var options=$("#payWay option:selected"); //获取选中的项
+
+        // alert(options.val()); //拿到选中项的值
+        var params = {
+            "amount": amount,
+            "charge":{
+                "channel":options.val()
+            }
+        };
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(params),
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            traditional: true, //使json格式的字符串不会被转码
+            url: '/balance/createRecharge',
+
+            success: function (data) {
+                pingpp.createPayment(data, function (result, err) {
+                    // object 需是 Charge/Order/Recharge 的 JSON 字符串
+                    // 可按需使用 alert 方法弹出 log
+                    console.log(result);
+                    console.log(err.msg);
+                    console.log(err.extra);
+                    if (result == "success") {
+                        alert("OK")
+                        // 只有微信公众号 (wx_pub)、微信小程序（wx_lite）、QQ 公众号 (qpay_pub)、支付宝小程序（alipay_lite）支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL
+                    } else if (result == "fail") {
+                        alert("fail")
+                        // Ping++ 对象 object 不正确或者微信公众号/微信小程序/QQ公众号支付失败时会在此处返回
+                    } else if (result == "cancel") {
+                        alert("cancel")
+                        // 微信公众号、微信小程序、QQ 公众号、支付宝小程序支付取消支付
+                    }
+                });
             },
 
             error: function (e) {

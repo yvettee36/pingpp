@@ -30,8 +30,8 @@ public class ChargeService {
         chargeMap.put("amount", charge.getAmount());//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         chargeMap.put("client_ip", charge.getClientIp()); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         chargeMap.put("currency", "cny");
-        chargeMap.put("subject", "一加6T");
-        chargeMap.put("body", "一加，不将就");
+        chargeMap.put("subject", "subjectTest_yvettee");
+        chargeMap.put("body", "bodyTest_yvettee");
         chargeMap.put("description", "备注");
         Long time_expire = CommonUtil.getOrderExpireTime(2 * 60 * 1000L);
         chargeMap.put("time_expire", time_expire);

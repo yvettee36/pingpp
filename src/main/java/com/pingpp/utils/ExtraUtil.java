@@ -40,7 +40,7 @@ public class ExtraUtil {
     public static Map<String, Object> alipayPcDirectExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
-        extra.put("success_url", "https://127.0.0.1:8080/success.jsp");
+        extra.put("success_url", "http://127.0.0.1:8080/success.jsp");
 
         // 可选，是否开启防钓鱼网站的验证参数（如果已申请开通防钓鱼时间戳验证，则此字段必填）。
         // extra.put("enable_anti_phishing_key", false);
@@ -410,7 +410,7 @@ public class ExtraUtil {
         goods.put("unified_goods_id", "1001"); // 统一商品编号，可选。
         goods.put("goods_name", "iPhone 6s 16G"); // 商品名称。
         goods.put("goods_num", 1); // 商品数量。
-        goods.put("price", 528800); // 商品价格，单位为分。
+        goods.put("price", "528800"); // 商品价格，单位为分。
         goods.put("goods_category", "smartphone"); // 商品类目，可选。
         goods.put("body", "苹果手机 iPhone 6s 16G"); // 商品描述信息，可选。
         goods.put("show_url", "https://www.example.com"); // 商品的展示网址，可选。
