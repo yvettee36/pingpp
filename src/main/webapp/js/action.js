@@ -61,7 +61,6 @@ function qr_pay(channel) {
             $(".ch").hide();
             $(".qrCode").show();
 
-            /*注意：这个时候生成的二维码在微信中长按没任何反应，因为qrcode生成的是canvas标签而不是img标签*/
             $(".qrCode").qrcode({
                 render: "table", //table方式
                 width: 200, //宽度
@@ -128,38 +127,38 @@ function recharge() {
         }
 
     });
+}
 
 
-    /**
-     * 转账
-     */
-    function transfer() {
-        var amount = $("#amount").val();
-        var recipient = $("#recipient").val();
+/**
+ * 转账
+ */
+function transfer() {
+    var amount = $("#amount").val();
+    var recipient = $("#recipient").val();
 
-        // alert(options.val()); //拿到选中项的值
-        var params = {
-            "amount": amount,
-            "recipient": recipient
-        };
-        $.ajax({
-            type: 'POST',
-            data: JSON.stringify(params),
-            contentType: "application/json;charset=utf-8",
-            dataType: 'json',
-            traditional: true, //使json格式的字符串不会被转码
-            url: '/balance/balanceTransfer',
+    // alert(options.val()); //拿到选中项的值
+    var params = {
+        "amount": amount,
+        "recipient": recipient
+    };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(params),
+        contentType: "application/json;charset=utf-8",
+        dataType: 'json',
+        traditional: true, //使json格式的字符串不会被转码
+        url: '/balance/balanceTransfer',
 
-            success: function (data) {
-                console.log(data);
-                layer.msg('转账成功', {icon: 1});
-            },
+        success: function (data) {
+            console.log(data);
+            layer.msg('转账成功', {icon: 1});
+        },
 
-            error: function (e) {
-                console.log(e)
-            }
+        error: function (e) {
+            console.log(e)
+        }
 
-        });
+    });
 
-    }
 }
