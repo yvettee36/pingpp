@@ -13,7 +13,8 @@ public class Junit {
     private TransferService transferService = new TransferService();
     private UserService userService = new UserService();
     private SettleAccountService settleAccountService = new SettleAccountService();
-    private RechargeService rechargeService = new RechargeService();
+    private BalanceService rechargeService = new BalanceService();
+    private OrderService orderService = new OrderService();
 
     @Test
     public void testCharge() {
@@ -31,15 +32,18 @@ public class Junit {
         System.out.println(charge.toString());
     }
 
+    /**
+     * 退款测试
+     */
     @Test
     public void testRefund() {
-        Refund refund = refundService.refund(1, "ch_88m98OD0uLK4Gy90q1004ubT");
+        Refund refund = refundService.refund(1, "ch_yrPuzDLCOenD5KeHCKrTqjnD");
         System.out.println(refund.toString());
     }
 
     @Test
     public void testTransfer() {
-        Transfer transfer = transferService.createTransfer("alipay");
+        Transfer transfer = transferService.createTransfer("balance");
         System.out.println(transfer.toString());
     }
 
@@ -90,5 +94,30 @@ public class Junit {
 //        String user = "yvettee_user1";
 //        Recharge recharge = rechargeService.createRecharge(user);
 //        System.out.println(recharge.toString());
+    }
+
+
+    /**
+     * 创建order
+     */
+    @Test
+    public void testCreateOrder() {
+        Order order = new Order();
+        order.setAmount(1);
+        order.setClientIp("127.0.0.1");
+        Order recharge = orderService.createOrder(order);
+        System.out.println(recharge.toString());
+    }
+
+
+    /**
+     * 查询order
+     */
+    @Test
+    public void testGetOrder() {
+        String id = "";
+        Order order = null;
+        Order recharge = orderService.testGetOrder(id);
+        System.out.println(recharge.toString());
     }
 }

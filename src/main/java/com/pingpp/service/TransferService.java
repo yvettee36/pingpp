@@ -98,6 +98,9 @@ public class TransferService {
                 break;
             case "unionpay":
             case "allinpay":
+            case "balance":
+                recipient = "yvettee_user1";
+                break;
             case "jdpay":
                 break;
         }

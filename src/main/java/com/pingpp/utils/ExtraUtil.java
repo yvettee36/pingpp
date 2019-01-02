@@ -40,7 +40,7 @@ public class ExtraUtil {
     public static Map<String, Object> alipayPcDirectExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
-        extra.put("success_url", "http://127.0.0.1:8080/success.jsp");
+        extra.put("success_url", "http://127.0.0.1:8080/index.jsp");
 
         // 可选，是否开启防钓鱼网站的验证参数（如果已申请开通防钓鱼时间戳验证，则此字段必填）。
         // extra.put("enable_anti_phishing_key", false);

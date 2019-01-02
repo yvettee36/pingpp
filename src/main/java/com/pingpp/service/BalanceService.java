@@ -2,13 +2,16 @@ package com.pingpp.service;
 
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.*;
+import com.pingplusplus.model.BalanceTransfer;
 import com.pingplusplus.model.Recharge;
+import com.pingpp.utils.CommonUtil;
 import com.pingpp.utils.Const;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RechargeService {
+public class BalanceService {
 
     private ChargeService chargeService = new ChargeService();
 
@@ -50,5 +53,35 @@ public class RechargeService {
         return recharge;
     }
 
+
+    public BalanceTransfer createBalanceTransfer(BalanceTransfer balanceTransfer) {
+        Pingpp.apiKey = Const.APP_KEY;
+        Pingpp.privateKey = Const.APP_PRIVATE_KEY;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("user", "yvettee_user1");
+        params.put("recipient", balanceTransfer.getRecipient());
+        params.put("amount", balanceTransfer.getAmount());
+        String orderNo = new Date().getTime() + CommonUtil.randomString(7);
+        params.put("order_no", "bt" + orderNo);
+        params.put("description", "Balance transfer description.");
+
+        try {
+            balanceTransfer  = BalanceTransfer.create(params);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        } catch (InvalidRequestException e) {
+            e.printStackTrace();
+        } catch (APIConnectionException e) {
+            e.printStackTrace();
+        } catch (APIException e) {
+            e.printStackTrace();
+        } catch (ChannelException e) {
+            e.printStackTrace();
+        } catch (RateLimitException e) {
+            e.printStackTrace();
+        }
+
+        return balanceTransfer;
+    }
 
 }

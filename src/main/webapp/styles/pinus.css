@@ -770,7 +770,11 @@ url(../img/bgpic.jpg) no-repeat center
     font-size: larger;
     text-align: center;
 }
-
+#balance {
+    font-size: 16px;
+    width:auto;
+    text-align: center;
+}
 .select {
     position: relative;
     display: block;
@@ -828,6 +832,7 @@ url(../img/bgpic.jpg) no-repeat center
 
 .text_amount input[type="text"] {
     width: 100%;
+    margin: 8px auto;
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     -ms-transition: all 0.2s ease-out;
