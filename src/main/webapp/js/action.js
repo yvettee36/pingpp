@@ -3,9 +3,7 @@ function wap_pay(channel) {
     var amount = $("#amount").val();
     var params = {
         "amount": amount,
-        "charge": {
-            "channel": channel
-        }
+        "channel": channel
     };
     $.ajax({
         type: 'POST',
