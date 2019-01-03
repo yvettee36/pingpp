@@ -136,8 +136,7 @@ function recharge() {
 function transfer() {
     var amount = $("#amount").val();
     var recipient = $("#recipient").val();
-
-    // alert(options.val()); //拿到选中项的值
+    var balance = parseInt($('#balance').val());
     var params = {
         "amount": amount,
         "recipient": recipient
@@ -149,10 +148,10 @@ function transfer() {
         dataType: 'json',
         traditional: true, //使json格式的字符串不会被转码
         url: '/balance/balanceTransfer',
-
         success: function (data) {
             console.log(data);
             layer.msg('转账成功', {icon: 1});
+            $('#balance').val(balance - Number(data['amount']));  //往input框里传值
         },
 
         error: function (e) {
@@ -160,5 +159,41 @@ function transfer() {
         }
 
     });
+
+}
+
+/**
+ * 提现
+ */
+function withdrawal() {
+
+
+    var amount = $("#amount").val();
+    var options = $("#payWay option:selected"); //获取选中的项
+
+    // alert(options.val()); //拿到选中项的值
+    var params = {
+        "amount": amount,
+        "channel": options.val()
+    };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(params),
+        contentType: "application/json;charset=utf-8",
+        dataType: 'json',
+        traditional: true, //使json格式的字符串不会被转码
+        url: '/balance/balanceWithdrawal',
+
+        success: function (data) {
+            console.log(data);
+            layer.msg('提现成功', {icon: 1});
+        },
+
+        error: function (e) {
+            console.log(e)
+        }
+
+    });
+
 
 }

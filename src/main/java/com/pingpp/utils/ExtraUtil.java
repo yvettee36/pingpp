@@ -77,7 +77,7 @@ public class ExtraUtil {
         // extra.put("goods_tag", "YOUR_GOODS_TAG");
 
         // 必须，用户在商户 appid 下的唯一标识。
-        extra.put("open_id", "o7xEMsySBFG3MVHI-9VsAJX-j50W");
+        extra.put("open_id", "o9zpMswQdsU9rGgpBKyYyrWX2XK8");
 
         return extra;
     }

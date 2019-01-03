@@ -3,6 +3,7 @@ package com.pingpp.controller;
 import com.pingplusplus.model.BalanceTransfer;
 import com.pingplusplus.model.Recharge;
 import com.pingplusplus.model.User;
+import com.pingplusplus.model.Withdrawal;
 import com.pingpp.service.BalanceService;
 import com.pingpp.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -66,5 +67,21 @@ public class BalanceController {
     public String balanceTransfer(HttpServletRequest request, HttpServletResponse response, @RequestBody BalanceTransfer blanceTransfer) {
         blanceTransfer = balanceService.createBalanceTransfer(blanceTransfer);
         return blanceTransfer.toString();
+    }
+
+
+    /**
+     * 提现
+     *
+     * @param request
+     * @param response
+     * @param withdrawal
+     * @return
+     */
+    @RequestMapping(value = "/balanceWithdrawal")
+    @ResponseBody
+    public String balanceWithdrawal(HttpServletRequest request, HttpServletResponse response, @RequestBody Withdrawal withdrawal) {
+        withdrawal = balanceService.createWithdrawal(withdrawal);
+        return withdrawal.toString();
     }
 }

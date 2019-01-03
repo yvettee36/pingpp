@@ -26,8 +26,7 @@
             </span>
             <span class="balance">账 户 余 额：
                 <input id="balance" type="text" value="<%= session.getAttribute("amount")%>分"
-                       onkeydown="onkeyup();" onkeyup="size=(this.value.length>4?this.value.length:4);"
-                />
+                       onkeydown="onkeyup();" onkeyup="size=(this.value.length>4?this.value.length:4);"/>
             </span>
             <label class="text_amount">
                 <input id="amount" type="text" placeholder="金 额"/>
@@ -35,8 +34,11 @@
                 <div class="select">
                     <select id="payWay" class="payWay">
                         <option value="" disabled selected>充值 or 提现</option>
-                        <option value="alipay_pc_direct">支付宝电脑网站支付</option>
-                        <option value="wx_pub_qr">微信Native支付</option>
+                        <option value="alipay_pc_direct">支付宝电脑网站</option>
+                        <option value="wx_pub_qr">微信Native</option>
+                        <option value="alipay">支付宝APP</option>
+                        <option value="wx">微信APP</option>
+                        <option value="wx_pub">微信JSAPI</option>
                     </select>
                 </div>
                 <input class="btStyle" id="recharge" type="button" value="充值" onclick="recharge()"/>
@@ -66,15 +68,5 @@
 <script src="js/jquery.qrcode.min.js" type="text/javascript"></script>
 <script src="js/action.js" type="text/javascript"></script>
 
-
-<script>
-
-
-    function withdrawal() {
-
-        layer.msg('提现成功', {icon: 1});
-    }
-
-</script>
 </body>
 </html>

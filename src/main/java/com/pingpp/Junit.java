@@ -13,7 +13,7 @@ public class Junit {
     private TransferService transferService = new TransferService();
     private UserService userService = new UserService();
     private SettleAccountService settleAccountService = new SettleAccountService();
-    private BalanceService rechargeService = new BalanceService();
+    private BalanceService balanceService = new BalanceService();
     private OrderService orderService = new OrderService();
 
     @Test
@@ -91,9 +91,10 @@ public class Junit {
      */
     @Test
     public void testRecharge() {
-//        String user = "yvettee_user1";
-//        Recharge recharge = rechargeService.createRecharge(user);
-//        System.out.println(recharge.toString());
+        Recharge recharge = new Recharge();
+        recharge.setUser("0");
+        recharge = balanceService.createRecharge(recharge);
+        System.out.println(recharge.toString());
     }
 
 
@@ -116,8 +117,19 @@ public class Junit {
     @Test
     public void testGetOrder() {
         String id = "";
-        Order order = null;
-        Order recharge = orderService.testGetOrder(id);
-        System.out.println(recharge.toString());
+        Order order = orderService.testGetOrder(id);
+        System.out.println(order.toString());
+    }
+
+    /**
+     * 查询withdrawal
+     */
+    @Test
+    public void testGetWithdrawal() {
+        String id = "1711901021758167943";
+        Withdrawal withdrawal = null;
+//        withdrawal = balanceService.getWithdrawal(id);
+        withdrawal = balanceService.pendingWithdrawal(id);
+        System.out.println(withdrawal.toString());
     }
 }
