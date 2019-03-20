@@ -11,7 +11,8 @@ function wap_pay(channel) {
         contentType: "application/json;charset=utf-8",
         dataType: 'json',
         traditional: true, //使json格式的字符串不会被转码
-        url: '/charge/createCharge',
+        // url: '/charge/createCharge',//charge接口
+        url: '/order/createOrder',//order接口
 
         success: function (data) {
             pingpp.createPayment(data, function (result, err) {

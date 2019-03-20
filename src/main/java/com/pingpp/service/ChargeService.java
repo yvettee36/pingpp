@@ -25,6 +25,7 @@ public class ChargeService {
         Pingpp.privateKey = Const.APP_PRIVATE_KEY;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
         String orderNo = new Date().getTime() + CommonUtil.randomString(7);
+//        String orderNo = "testSame1001";
         chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
         chargeMap.put("channel", charge.getChannel());// 支付使用的第三方支付渠道取值，请参考：https://www.pingxx.com/api#api-c-new
         chargeMap.put("amount", charge.getAmount());//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
@@ -161,6 +162,9 @@ public class ChargeService {
                 break;
             case "cb_wx_pub_scan":
                 extra = ExtraUtil.cbWxPubScanExtra();
+                break;
+            case "paypal":
+                extra = ExtraUtil.paypalExtra();
                 break;
         }
 

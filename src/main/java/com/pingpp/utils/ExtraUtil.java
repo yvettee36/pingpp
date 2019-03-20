@@ -25,8 +25,9 @@ public class ExtraUtil {
 
         // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
         extra.put("success_url", "https://example.com/success");
+//        extra.put("success_url", "https://alibetahybrid.followme.com/subscription/payment-result?orderId=13190316183535085317&_appVersion=pro-v4.2.5.25");
         // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
-        extra.put("cancel_url", "https://example.com/cancel");
+        extra.put("cancel_url", "https://example.com/success");
 
         // 可选，2016 年 6 月 16 日之前登录 Ping++ 管理平台填写支付宝手机网站的渠道参数的旧接口商户，需要更新接口时设置此参数值为true，6月16号后接入的新接口商户不需要设置该参数。
         // extra.put("new_version", true);
@@ -113,7 +114,8 @@ public class ExtraUtil {
     public static Map<String, Object> wxWapExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 可选，支付完成的回调地址。
-        extra.put("result_url", "https://example.com/success");
+//        extra.put("result_url", "https://example.com/success");
+        extra.put("result_url", "https://alibetahybrid.followme.com/subscription/payment-result?orderId=13190316183535085317&_appVersion=pro-v4.2.5.25s");
 
         // 可选，商品标记，代金券或立减优惠功能的参数。
         // extra.put("goods_tag", "YOUR_GOODS_TAG");
@@ -147,6 +149,7 @@ public class ExtraUtil {
     public static Map<String, Object> upacpWapExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，支付完成的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+//        extra.put("result_url", "https://alibetahybrid.followme.com/subscription/payment-result?orderId=13190316183535085317&_appVersion=pro-v4.2.5.25");
         extra.put("result_url", "https://example.com/success");
 
         return extra;
@@ -400,6 +403,24 @@ public class ExtraUtil {
         // 必填，商品列表
         List<Object> goodsList = goodsListForCbWx();
         extra.put("goods_list", goodsList);
+        return extra;
+    }
+
+    public static Map<String, Object> paypalExtra() {
+        Map<String, Object> extra = new HashMap<>();
+
+        // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        extra.put("result_url", "https://example.com/success");
+//        extra.put("result_url", "https://alibetahybrid.followme.com/subscription/payment-result?orderId=13190316183535085317&_appVersion=pro-v4.2.5.25");
+        // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
+        extra.put("cancel_url", "https://example.com/cancel");
+
+        // 可选，2016 年 6 月 16 日之前登录 Ping++ 管理平台填写支付宝手机网站的渠道参数的旧接口商户，需要更新接口时设置此参数值为true，6月16号后接入的新接口商户不需要设置该参数。
+        // extra.put("new_version", true);
+
+        // 可选，是否使用支付宝客户端支付，该参数为true时，调用客户端支付。
+        // extra.put("app_pay", true);
+
         return extra;
     }
 

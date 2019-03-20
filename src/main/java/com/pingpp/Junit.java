@@ -2,6 +2,7 @@ package com.pingpp;
 
 import com.pingplusplus.model.*;
 import com.pingpp.service.*;
+import com.pingpp.utils.Const;
 import org.junit.jupiter.api.Test;
 
 public class Junit {
@@ -19,7 +20,7 @@ public class Junit {
     @Test
     public void testCharge() {
         Charge charge = new Charge();
-        charge.setChannel("wx");
+        charge.setChannel("alipay_pc_direct");
         charge.setClientIp("127.0.0.1");
         charge.setAmount(1);
         String chargeString = chargeService.createCharge(charge).toString();
@@ -28,7 +29,7 @@ public class Junit {
 
     @Test
     public void testGetCharge() {
-        Charge charge = retrieveService.getCharge("ch_90a5qPPWLOS4nrjbH4bTijDS");
+        Charge charge = retrieveService.getCharge("ch_Ha9yzDyTu50CWPejb5fjbLCK");
         System.out.println(charge.toString());
     }
 
@@ -43,7 +44,7 @@ public class Junit {
 
     @Test
     public void testTransfer() {
-        Transfer transfer = transferService.createTransfer("balance");
+        Transfer transfer = transferService.createTransfer("unionpay");
         System.out.println(transfer.toString());
     }
 
@@ -131,5 +132,14 @@ public class Junit {
 //        withdrawal = balanceService.getWithdrawal(id);
         withdrawal = balanceService.pendingWithdrawal(id);
         System.out.println(withdrawal.toString());
+    }
+
+    /**
+     * 时间测试
+     */
+    @Test
+    public void testTime() {
+        long time =System.currentTimeMillis()/1000;
+        System.out.println(time);
     }
 }

@@ -32,11 +32,13 @@ public class ChargeController {
     public String createCharge(HttpServletRequest request, HttpServletResponse response, @RequestBody Charge charge) {
 
         charge.setClientIp(IPUtil.getIp(request));
+//        charge.setClientIp("180.168.5.158");
         Charge charge1 = chargeService.createCharge(charge);
         String chargeString = charge1.toString();
 
         return chargeString;
     }
+
 
     /**
      * 生成二维码，返回到页面上
