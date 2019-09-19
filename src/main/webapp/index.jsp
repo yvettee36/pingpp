@@ -35,6 +35,7 @@
                     <select id="payWay" class="payWay">
                         <option value="" disabled selected>充值 or 提现</option>
                         <option value="alipay_pc_direct">支付宝电脑网站</option>
+                        <option value="cb_alipay_pc_direct">跨境支付宝电脑网站</option>
                         <option value="wx_pub_qr">微信Native</option>
                         <option value="alipay">支付宝APP</option>
                         <option value="wx">微信APP</option>
@@ -51,15 +52,18 @@
                 <span class="up" onclick="wap_pay('alipay_wap');">支付宝手机网页</span>
                 <span class="up" onclick="qr_pay('alipay_qr');">支付宝扫码</span>
                 <span class="up" onclick="wap_pay('alipay_pc_direct');">支付宝电脑网站</span>
+                <span class="up" onclick="wap_pay('cb_alipay_pc_direct');">跨境支付宝电脑网站</span>
                 <span class="up" onclick="qr_pay('wx_pub_qr');">微信Native</span>
                 <span class="up" onclick="wap_pay('wx_wap');">微信H5</span>
                 <span class="up" onclick="wap_pay('upacp_pc');">银联网关支付</span>
                 <span class="up" onclick="qr_pay('upacp_qr');">银联二维码</span>
                 <span class="up" onclick="wap_pay('upacp_wap');">银联手机网站</span>
+                <span class="up" onclick="wap_pay('cmb_wallet');">招行一网通支付</span>
                 <span class="up" onclick="qr_pay('isv_qr');">线下扫码</span>
                 <span class="up" onclick="wap_pay('isv_wap');">线下固定码</span>
                 <span class="up" onclick="wap_pay('paypal');">paypal</span>
                 <span class="up" onclick="wap_pay('upacp_b2b');">企业银联支付</span>
+                <span class="up" onclick="wap_pay('balance');">支付</span>
             </div>
             <div class="qrCode"></div>
         </div>

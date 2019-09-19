@@ -25,17 +25,17 @@ public class ChargeService {
         Pingpp.privateKey = Const.APP_PRIVATE_KEY;
         Map<String, Object> chargeMap = new HashMap<String, Object>();
         String orderNo = new Date().getTime() + CommonUtil.randomString(7);
-//        String orderNo = "testSame1001";
+//        String orderNo = "ROTK1903220TA5943075";
         chargeMap.put("order_no", orderNo);// 推荐使用 8-20 位，要求数字或字母，不允许其他字符
         chargeMap.put("channel", charge.getChannel());// 支付使用的第三方支付渠道取值，请参考：https://www.pingxx.com/api#api-c-new
         chargeMap.put("amount", charge.getAmount());//订单总金额, 人民币单位：分（如订单总金额为 1 元，此处请填 100）
         chargeMap.put("client_ip", charge.getClientIp()); // 发起支付请求客户端的 IP 地址，格式为 IPV4，如: 127.0.0.1
         chargeMap.put("currency", "cny");
-        chargeMap.put("subject", "subjectTest_yvettee");
-        chargeMap.put("body", "bodyTest_yvettee");
+        chargeMap.put("subject", "yvettee_subject");
+        chargeMap.put("body", "yvettee_body");
         chargeMap.put("description", "备注");
-        Long time_expire = CommonUtil.getOrderExpireTime(2 * 60 * 1000L);
-        chargeMap.put("time_expire", time_expire);
+//        Long time_expire = CommonUtil.getOrderExpireTime(2 * 60 * 1000L);
+//        chargeMap.put("time_expire", time_expire);
         Map<String, String> initialMetadata = new HashMap<String, String>();
         initialMetadata.put("color", "red");
         initialMetadata.put("phone_number", "13918651111");
@@ -49,6 +49,7 @@ public class ChargeService {
 
         try {
             //发起交易请求
+            System.out.println(Pingpp.privateKey);
             charge = Charge.create(chargeMap);
             System.out.println(charge.toString());
         } catch (APIConnectionException e) {
@@ -150,6 +151,9 @@ public class ChargeService {
                 break;
             case "cb_alipay":
                 extra = ExtraUtil.cbAlipayExtra();
+                break;
+            case "cb_alipay_pc_direct":
+                extra = ExtraUtil.cbAlipayPcDirectExtra();
                 break;
             case "cb_wx":
                 extra = ExtraUtil.cbWxExtra();

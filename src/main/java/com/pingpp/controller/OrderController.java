@@ -35,8 +35,8 @@ public class OrderController {
         order = orderService.createOrder(order);
         //支付order
         Order order1 = orderService.payOrder(order);
-
         String orderString = order1.toString();
+        System.out.println("orderString:" + orderString);
         return orderString;
     }
 }

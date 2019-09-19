@@ -1,5 +1,10 @@
 package com.pingpp.utils;
 
+import sun.misc.BASE64Encoder;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
@@ -27,6 +32,27 @@ public class CommonUtil {
         Date now = new Date();
         Long afterDateTime = (now.getTime() + expire) / 1000;
         return afterDateTime;
+    }
+
+    /**
+     * 图片转成 Base64
+     * @param imgFile
+     * @return
+     */
+    public static String getImageStr(String imgFile) {
+        InputStream inputStream = null;
+        byte[] data = null;
+        try {
+            inputStream = new FileInputStream(imgFile);
+            data = new byte[inputStream.available()];
+            inputStream.read(data);
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 加密
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(data);
     }
 
 }

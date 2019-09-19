@@ -41,13 +41,13 @@ public class TransferService {
         // jdpay 限长 1 ~ 64 位不能重复的数字字母组合;
         // allinpay 限长 20 ~ 40 位不能重复的数字字母组合，必须以签约的通联的商户号开头（建议组合格式：通联商户号 + 时间戳 + 固定位数顺序流水号，不包含+号）
 
-        if (channel == "allinpay") {
+        if (channel == "chanpay") {
             orderNo += System.currentTimeMillis();
         }
 
         transferMap.put("order_no", orderNo);
         transferMap.put("amount", 100); // 付款金额，相关渠道的限额，请查看 https://help.pingxx.com/article/133366/ 。单位为对应币种的最小货币单位，例如：人民币为分。
-        transferMap.put("type", "b2b"); // 付款类型，转账到个人用户为 b2c，转账到企业用户为 b2b（微信公众号 wx_pub 的企业付款，仅支持 b2c）。
+        transferMap.put("type", "b2c"); // 付款类型，转账到个人用户为 b2c，转账到企业用户为 b2b（微信公众号 wx_pub 的企业付款，仅支持 b2c）。
         transferMap.put("currency", "cny");
         transferMap.put("recipient", channelRecipient(channel)); // 接收者
 
@@ -129,6 +129,9 @@ public class TransferService {
             case "jdpay":
                 extra = jdpayExtra();
                 break;
+            case "chanpay":
+                extra = chanpayExtra();
+                break;
         }
 
         return extra;
@@ -207,6 +210,21 @@ public class TransferService {
     }
 
     private Map<String, Object> jdpayExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 必须，1~32位，收款人银行卡号或者存折号。
+        extra.put("card_number", "6228480402564890011");
+
+        // 必须，1~100位，收款人姓名。
+        extra.put("user_name", "李四");
+
+        // 必须，4位，开户银行编号，详情请参考 企业付款（银行卡）银行编号说明：https://www.pingxx.com/api#%E9%93%B6%E8%A1%8C%E7%BC%96%E5%8F%B7%E8%AF%B4%E6%98%8E。
+        extra.put("open_bank_code", "0103");
+
+        return extra;
+
+    }
+
+    private Map<String, Object> chanpayExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，1~32位，收款人银行卡号或者存折号。
         extra.put("card_number", "6228480402564890011");

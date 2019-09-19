@@ -25,9 +25,12 @@ public class ExtraUtil {
 
         // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
         extra.put("success_url", "https://example.com/success");
-//        extra.put("success_url", "https://alibetahybrid.followme.com/subscription/payment-result?orderId=13190316183535085317&_appVersion=pro-v4.2.5.25");
+//        extra.put("success_url", "http://127.0.0.1:8040/channel/promote?productId=141666&channel=123");
+
         // 可选，支付取消的回调地址， app_pay 为true时，该字段无效，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
         extra.put("cancel_url", "https://example.com/success");
+        extra.put("hb_fq_num", 12);
+        extra.put("hb_fq_seller_percent", "100%");
 
         // 可选，2016 年 6 月 16 日之前登录 Ping++ 管理平台填写支付宝手机网站的渠道参数的旧接口商户，需要更新接口时设置此参数值为true，6月16号后接入的新接口商户不需要设置该参数。
         // extra.put("new_version", true);
@@ -41,7 +44,7 @@ public class ExtraUtil {
     public static Map<String, Object> alipayPcDirectExtra() {
         Map<String, Object> extra = new HashMap<>();
         // 必须，支付成功的回调地址，在本地测试不要写 localhost ，请写 127.0.0.1。URL 后面不要加自定义参数。
-        extra.put("success_url", "http://127.0.0.1:8080/index.jsp");
+        extra.put("success_url", "www.baidu.com");
 
         // 可选，是否开启防钓鱼网站的验证参数（如果已申请开通防钓鱼时间戳验证，则此字段必填）。
         // extra.put("enable_anti_phishing_key", false);
@@ -283,11 +286,11 @@ public class ExtraUtil {
         extra.put("terminal_id", "A0000007");
 
         // 必须，具体支付渠道，目前支持：alipay、wx、bfb。
-        extra.put("pay_channel", "alipay");
+        extra.put("pay_channel", "wx");
 
         // 可选，商品列表，上送格式参照下面示例。序列化后总字符串长度不超过 8000。
-        List<Object> goodsList = goodsListForIsv();
-        extra.put("goods_list", goodsList);
+//        List<Object> goodsList = goodsListForIsv();
+//        extra.put("goods_list", goodssList);
 
         return extra;
     }
@@ -298,7 +301,7 @@ public class ExtraUtil {
         extra.put("terminal_id", "A0000007");
 
         // 必须，具体支付渠道，目前支持：alipay、wx、bfb。
-        extra.put("pay_channel", "wx");
+        extra.put("pay_channel", "alipay");
 
         // 必须，前台通知地址，支付成功或失败后，跳转到的 URL。
         extra.put("result_url", "https://www.example.com/payment-result");
@@ -354,6 +357,20 @@ public class ExtraUtil {
         map.put("amount", 1);  // 分账的金额。
         map.put("desc", "split_desc desc");  // 分账描述信息。
         extra.put("split_fund_info", list);
+        return extra;
+    }
+
+    public static Map<String, Object> cbAlipayPcDirectExtra() {
+        Map<String, Object> extra = new HashMap<>();
+        // 可选，支付类型。默认值为：1（商品购买）。
+        extra.put("refer_url", "www.baidu.com");
+
+        // 可选，分账列表。
+        Map<String, Object> map = new HashMap<>();
+        map.put("business_type", "2"); // 接受分账资金的支付宝账户ID。
+        map.put("flight_number", "NWS 996"); // 接受分账资金的支付宝账户ID。
+        map.put("departure_time", "2019-06-22 20:49"); // 接受分账资金的支付宝账户ID。
+        extra.put("trade_information",map);// 分账描述信息。
         return extra;
     }
 
